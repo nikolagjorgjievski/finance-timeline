@@ -14,6 +14,10 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            whoami
-            ls -al
-            pwd
+            cd /var/www/html/finance-timeline
+            git stash
+            git pull
+            composer install
+            npm install
+            npm run prod
+            php artisan migrate
